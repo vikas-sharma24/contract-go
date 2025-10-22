@@ -84,6 +84,7 @@ func EncryptPassword(password, cert string) (string, error) {
 		return "", fmt.Errorf("failed to create temp file - %v", err)
 	}
 
+	// add logic to test encryption certificate expiry
 	result, err := gen.ExecCommand(gen.GetOpenSSLPath(), password, "rsautl", "-encrypt", "-inkey", encryptCertPath, "-certin")
 	if err != nil {
 		return "", fmt.Errorf("failed to execute openssl command - %v", err)
